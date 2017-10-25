@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <script>
+        function time() {
+            var d = new Date();
+            var week = "星期" + "日一二三四五六".charAt(d.getDay());
+            var t = d.toLocaleTimeString();
+            var str = d.getFullYear() + "年" + (d.getMonth() + 1) + "月" + d.getDate() + "日";
+            $("#curTime").text(str + " " + week + " " + t);
+        }
+        $(function () {
+            self.setInterval("time()", 1000);
+        });
+    </script>
+</head>
+<body>
+<!--/*@thymesVar id="name" type="java.lang.String"*/-->
+<h2 th:text="'Hello, '+ ${name} + '!'">3333</h2>
+<h2>欢迎来到springboot</h2>
+<h2><span id="curTime"></span></h2>
+<a href="/redirect">注册</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="/model">登录</a>
+</body>
+</html>
