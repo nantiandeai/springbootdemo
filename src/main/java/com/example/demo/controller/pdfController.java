@@ -1,21 +1,20 @@
 package com.example.demo.controller;
 
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
-import javax.imageio.ImageIO;
-
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-
 public class pdfController {
-    static String filePath = "E:\\pdf\\20170110基层公共数字文化服务推广项目实施要点.pdf";
-    static String outputFilePath = "E:\\pdf\\java\\java";
+    static String filePath = "E:\\pdf\\钉钉基础功能手册(1).pdf";
+//    static String outputFilePath = "E:\\pdf\\java\\java";
+    static String outputFilePath = "E:" + File.separator + "pdf" + File.separator + "java" + File.separator + "java";
 
     /**
      * 将输入的PDF文件转换为图片
@@ -57,7 +56,7 @@ public class pdfController {
             suffix = pdfController.filePath.substring(idx);
         }
         if(!".pdf".equals(suffix)){
-
+            throw new  RuntimeException("文件类型只能为pdf格式");
         }
         File inputFile = new File(pdfController.filePath);
         File outputFolder = new File(pdfController.outputFilePath);
