@@ -1,17 +1,10 @@
 package com.example.demo.controller;
 
 import com.example.demo.domain.User;
-import org.apache.pdfbox.exceptions.COSVisitorException;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.edit.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDTrueTypeFont;
 
-import java.io.IOException;
-import java.util.*;
-import java.util.function.Predicate;
-
-import static org.apache.pdfbox.pdmodel.PDDocument.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class test {
 
@@ -63,7 +56,6 @@ public class test {
 
         users.forEach(user2 -> user1.getName().equals("测试1"));
         System.out.println();
-
 
     }
 

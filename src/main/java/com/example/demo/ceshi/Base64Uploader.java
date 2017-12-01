@@ -4,14 +4,16 @@ import com.baidu.ueditor.PathFormat;
 import com.baidu.ueditor.define.BaseState;
 import com.baidu.ueditor.define.FileType;
 import com.baidu.ueditor.define.State;
-import com.xiaosuokeji.feelschool.admin.util.OssUtils;
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.io.IOUtils;
 
 import java.io.ByteArrayInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Map;
 
 /**
- * Created by GustinLau on 2017-05-11.
+ *
  */
 public class Base64Uploader {
 
@@ -29,11 +31,16 @@ public class Base64Uploader {
             //将byte[]转换成输入流
             ByteArrayInputStream is = new ByteArrayInputStream(data);
             //图片上传到阿里云OSS服务器，自己写的工具类
-            Map result = OssUtils.ueditorUpload(is, savePath);
+//            Map result = OssUtils.ueditorUpload(is, savePath);
             //构造对应的Stage让UEditor读取
-            State storageState = new BaseState((boolean) result.get("status"));
+            try {
+                IOUtils.copy(is, new FileOutputStream(savePath));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            State storageState = new BaseState(true);
             if (storageState.isSuccess()) {
-                storageState.putInfo("url", (String) result.get("url"));
+                storageState.putInfo("url", savePath);
                 storageState.putInfo("type", suffix);
                 storageState.putInfo("original", "");
             }

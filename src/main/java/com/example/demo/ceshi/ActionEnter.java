@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
- * Created by GustinLau on 2017-05-11.
+ *
  */
 public class ActionEnter extends com.baidu.ueditor.ActionEnter {
     private HttpServletRequest request = null;

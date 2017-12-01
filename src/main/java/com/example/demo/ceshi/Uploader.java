@@ -5,9 +5,7 @@ import com.baidu.ueditor.define.State;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
-/**
- * Created by GustinLau on 2017-05-11.
- */
+
 public class Uploader {
     private HttpServletRequest request = null;
     private Map<String, Object> conf = null;
