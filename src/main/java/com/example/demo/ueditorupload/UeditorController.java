@@ -14,13 +14,14 @@ import java.io.IOException;
  */
 @Controller()
 @RequestMapping("/ueditor")
-@CrossOrigin
 public class UeditorController {
 
     @RequestMapping("index")
     @ResponseBody
+    @CrossOrigin
     public void showUeditor(HttpServletRequest req, HttpServletResponse res) throws IOException {
         String rootPath = req.getRealPath("/") ;
+        res.setHeader("X-Frame-Options", "SAMEORIGIN");
         String actionEnter = new ActionEnter(req,rootPath).exec() ;
         res.getWriter().write(actionEnter);
     }

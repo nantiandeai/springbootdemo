@@ -57,7 +57,7 @@ public class BinaryUploader {
 				return new BaseState(false, AppInfo.NOTFOUND_UPLOAD_DATA);
 			}
 			String savePath1 = (String) conf.get("savePath");
-			String rootDir = "\\home\\scity\\file-storage";
+			String rootDir = "\\home\\scity\\ueditorupload-storage";
 			String savePath = rootDir +savePath1;
 			String originFileName = multipartFile.getOriginalFilename();
 			String suffix = FileType.getSuffixByFilename(originFileName);
@@ -77,9 +77,8 @@ public class BinaryUploader {
 			String physicalPath = savePath; //(String) conf.get("rootPath") +
 
 					//InputStream is = fileStream.openStream();
-			State storageState = StorageManager.saveFileByInputStream(multipartFile.getInputStream(),
-					physicalPath, maxSize);
-			//is.close();
+					//is.close();
+			State storageState = StorageManager.saveFileByInputStream(multipartFile.getInputStream(),physicalPath, maxSize);
 
 			if (storageState.isSuccess()) {
 				String basePath = rootDir ;
@@ -90,7 +89,8 @@ public class BinaryUploader {
 				} else {
 					domainUrl = request.getScheme() + "://"+ request.getServerName() + ":" + request.getServerPort();
 				}*/
-				String staticServierUrl = "http://120.77.85.181:9000";//PropertiesReadUtils.getInstance().getPropValueByKey("staticServerUrl") ;
+//				String staticServierUrl = "http://120.77.85.181:9000/resource";//PropertiesReadUtils.getInstance().getPropValueByKey("staticServerUrl") ;
+				String staticServierUrl = "";
 				storageState.putInfo("url", savePath.replace(basePath,staticServierUrl));
 				storageState.putInfo("type", suffix);
 				storageState.putInfo("original", originFileName + suffix);

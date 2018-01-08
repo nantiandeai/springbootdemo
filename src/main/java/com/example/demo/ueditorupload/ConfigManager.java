@@ -26,7 +26,7 @@ public final class ConfigManager {
 	// 远程图片抓取filename定义
 	private final static String REMOTE_FILE_NAME = "remote";
 	
-	/*
+	/**
 	 * 通过一个给定的路径构建一个配置管理器， 该管理器要求地址路径所在目录下必须存在config.properties文件
 	 */
 	private ConfigManager ( String rootPath, String contextPath, String uri ) throws FileNotFoundException, IOException {
@@ -41,7 +41,9 @@ public final class ConfigManager {
 		} else {
 			this.originalPath = this.rootPath + uri;
 		}*/
-		this.originalPath = "src\\main\\resources\\static\\ueditor\\config.json" ;
+//		this.originalPath = "src\\main\\resources\\static\\ueditor\\config.json" ;
+		this.originalPath = this.getClass().getClassLoader().getResource("static/ueditor/config.json").getPath();
+		System.out.println(this.originalPath);
 		this.initEnv();
 		
 	}

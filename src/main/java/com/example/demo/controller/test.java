@@ -2,9 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.domain.User;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class test {
 
@@ -50,14 +48,59 @@ public class test {
         user.setAge(1);
         users.add(user);
         User user1 = new User();
-        user1.setName("测试2");
+        user1.setName("lisi");
         user1.setAge(1);
         users.add(user1);
 
-        users.forEach(user2 -> user1.getName().equals("测试1"));
-        System.out.println();
+        int bb = 0;
+        System.out.println(users.size()+bb);
+
+        /*Optional.ofNullable(user1).map(t->t.getName()).map(String::toUpperCase);
+        System.out.println(Optional.ofNullable(user1).map(t->t.getName()).map(String::toUpperCase));
+
+        System.out.println(Optional.ofNullable(user).map(t -> t.getName()).orElse("李四"));
+        users.forEach(uu->{if(uu.getName().equals("测试1")){
+            System.out.println("找到你了");
+        }
+        });
+
+        String nickName = getNickName("Duke").orElse("太傻了");
+        System.out.println(nickName);
+        Stream<String> names = Stream.of("Lamurudu", "Okanbi", "Oduduwa");
+        names
+                .filter(name -> name.startsWith("L"))
+                .findFirst().ifPresent(name -> {
+            String s = name.toUpperCase();
+            System.out.println("The longest name is " + s);
+        });
+
+        String[] array = new String[] {
+                "hello",
+                ", ",
+                "world",
+        };
+        List<String> list = Arrays.asList(array);*/
+        Optional.of(users).ifPresent(c -> c.forEach(b->{
+
+            System.out.println(Optional.of("ddd".equals(b.getName())).orElse(null));
+        }));
+
+        users.sort(Comparator.comparing(User::getName));
+
+
 
     }
+
+
+    static Optional<String> getNickName(String name) {
+        Map<String, String> nickNames = new HashMap<>(); // 假裝的鍵值資料庫
+        nickNames.put("Justin", "caterpillar");
+        nickNames.put("Monica", "momor");
+        nickNames.put("Irene", "hamimi");
+        String nickName = nickNames.get(name);
+        return nickName == null ? Optional.empty() : Optional.of(nickName);
+    }
+
 
 
 }
