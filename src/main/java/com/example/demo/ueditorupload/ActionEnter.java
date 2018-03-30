@@ -1,11 +1,13 @@
-package com.example.demo.file;
+package com.example.demo.ueditorupload;
 
+import com.baidu.ueditor.ConfigManager;
 import com.baidu.ueditor.define.ActionMap;
 import com.baidu.ueditor.define.AppInfo;
 import com.baidu.ueditor.define.BaseState;
 import com.baidu.ueditor.define.State;
 import com.baidu.ueditor.hunter.FileManager;
 import com.baidu.ueditor.hunter.ImageHunter;
+import com.baidu.ueditor.upload.Uploader;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
@@ -27,7 +29,7 @@ public class ActionEnter {
 		this.rootPath = rootPath;
 		this.actionType = request.getParameter( "action" );
 		this.contextPath = request.getContextPath();
-		this.configManager = ConfigManager.getInstance( this.rootPath, this.contextPath, request.getRequestURI() );
+//		this.configManager = ConfigManager.getInstance( this.rootPath, this.contextPath, request.getRequestURI() );
 		
 	}
 	

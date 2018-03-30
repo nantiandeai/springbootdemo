@@ -1,4 +1,4 @@
-package com.example.demo.file;
+package com.example.demo.ueditorupload;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;

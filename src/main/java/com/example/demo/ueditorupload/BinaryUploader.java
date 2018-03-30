@@ -1,4 +1,4 @@
-package com.example.demo.file;
+package com.example.demo.ueditorupload;
 
 import com.baidu.ueditor.PathFormat;
 import com.baidu.ueditor.define.AppInfo;
