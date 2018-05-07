@@ -1,5 +1,8 @@
 package com.example.demo.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.example.demo.domain.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -7,10 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,7 +32,17 @@ public class HelloController {
     private String name;
 
     @GetMapping(value = "/say")
-    public String sayHello() {
+    public String sayHello(HttpSession session, HttpServletRequest request) {
+        /*String id = session.getId();
+
+        System.out.println(session.getId());
+
+        Cookie [] cookie = request.getCookies();
+        for (Cookie cookie1 : cookie) {
+            System.out.println(cookie1.getName());
+        }
+        System.out.println(Arrays.toString(cookie));*/
+
         return "hello";
     }
 
@@ -44,7 +58,18 @@ public class HelloController {
      * @return
      */
     @RequestMapping("/redirect")
-    public String page2() {
+    public String page2(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+        String username = request.getParameter("name");
+        Cookie cName = new Cookie("username",username );
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Cookie cDate = new Cookie("lastVisited",format.format(new java.util.Date()));
+        System.out.println(cName.getName());
+        System.out.println(cName.getValue());
+        session = request.getSession();
+        System.out.println(session.getId());
+        session.setAttribute("name","lisi");
+        System.out.println(session.getAttribute("name"));
+        System.out.println(session.getServletContext());
         return "redirect/redirect";
     }
 
