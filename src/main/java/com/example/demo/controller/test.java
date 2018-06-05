@@ -5,9 +5,14 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.domain.User;
 
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.WatchService;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Stream;
 
 public class test {
 
@@ -51,12 +56,20 @@ public class test {
         User user = new User();
         user.setName("测试1");
         user.setAge(1);
-        users.add(user);
+
+
         User user1 = new User();
-        user1.setName("lisi");
+        user1.setName("meiy");
         user1.setAge(1);
+        users.add(user);
         users.add(user1);
 
+        Stream.of(users).forEach(user2 -> System.out.println(user2.get(0).getName()));
+        Optional.of(users).orElse(new ArrayList<>()).forEach(user2 -> System.out.println(user2.getName()));
+
+        System.out.println(FileSystems.getDefault());
+        WatchService service;
+        Path path;
         int bb = 0;
         System.out.println(users.size()+bb);
 
