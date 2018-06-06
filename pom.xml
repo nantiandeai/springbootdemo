@@ -89,6 +89,12 @@
 			<artifactId>commons-httpclient</artifactId>
 			<version>3.1</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.toile-libre.libe/curl -->
+		<dependency>
+			<groupId>org.toile-libre.libe</groupId>
+			<artifactId>curl</artifactId>
+			<version>0.0.15</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
