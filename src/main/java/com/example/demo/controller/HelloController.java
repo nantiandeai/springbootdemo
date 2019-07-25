@@ -32,13 +32,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.Servlet;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +67,37 @@ public class HelloController {
         System.out.println(Arrays.toString(cookie));*/
 
 		return "hello";
+	}
+
+	@GetMapping(value = "/getPath")
+	@ResponseBody
+	public List path(String uuid,HttpServletRequest request, HttpServletResponse response) throws IOException {
+		System.out.println(uuid);
+		ServletOutputStream out = null;
+		FileInputStream ips = null;
+		if (uuid!=null) {
+			try {
+				//获取图片存放路径
+
+				ips = new FileInputStream(new File(uuid));
+				response.setContentType("multipart/form-data");
+				out = response.getOutputStream();
+				//读取文件流
+				int len = 0;
+				byte[] buffer = new byte[1024 * 10];
+				while ((len = ips.read(buffer)) != -1){
+					out.write(buffer,0,len);
+				}
+				out.flush();
+			}catch (Exception e){
+				e.printStackTrace();
+			}finally {
+				out.close();
+				ips.close();
+			}
+		}
+		return null;
+
 	}
 
 	@RequestMapping(value = "/createuser")
